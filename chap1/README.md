@@ -19,9 +19,11 @@ cd docker-study2021/chap1
 
 ## 1.2. ファイル構成
 docker-study2021/chap1のファイル構成は次の通りです。  
-app.py :  flask　を使い　Hello world　を表示します。  
-requirements.txt : python pip で導入する項目のリストです。今回はFlaskのみです。  
-Dockerfile : Docker イメージ構成を記載したファイルです。  
+|ファイル名|概要|
+| ---- | ---- |
+|app.py|flask　を使い　Hello world　を表示します。|
+|requirements.txt|python pip で導入する項目のリストです。今回はFlaskのみです。|
+|Dockerfile|Docker イメージ構成を記載したファイルです。|
 
 ## 1.3. イメージファイルのビルド
 Dockerfileに記載した内容で、イメージファイルを生成します。  

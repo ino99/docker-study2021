@@ -12,7 +12,13 @@
 本手順は、CentOS7で事前検証しています。  
 スペック:CPU:2、Mem:2G, HDD:8G on VirtalBox  
 
+
+＃一括インストール  
+# sh ./install.sh  
+
 ・dockerインストール  
+sudo yum update -y  
+sudo yum install -y yum-utils
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo  
 sudo yum install -y docker-ce docker-ce-cli containerd.io  
 sudo yum install -y conntrack  
@@ -37,5 +43,17 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/miniku
 chmod +x minikube  
 install minikube /usr/local/bin/  
 
-minikube start   
+## 3.2. minikube環境の立ち上げ
+・立上げ  
+minikube start --vm-driver=none  
+
+・状況確認
 minikube status  
+以下、host、kubelet、apiserverが Running　になっていればOK  
+> type: Control Plane
+> host: Running
+> kubelet: Running
+> apiserver: Running
+> kubeconfig: Configured
+> timeToStop: Nonexistent
+

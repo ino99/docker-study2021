@@ -14,42 +14,42 @@
 
 
 ＃ 一括インストール  
-sh ./install.sh  
+> sh ./install.sh  
 
 ・dockerインストール  
-sudo yum update -y  
-sudo yum install -y yum-utils
-sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo  
-sudo yum install -y docker-ce docker-ce-cli containerd.io  
-sudo yum install -y conntrack  
+> sudo yum update -y  
+> sudo yum install -y yum-utils
+> sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo  
+> sudo yum install -y docker-ce docker-ce-cli containerd.io  
+> sudo yum install -y conntrack  
 
 ・dockerの動作確認  
-sudo systemctl start docker  
+> sudo systemctl start docker  
 
-docker run --rm hello-world  
-docker rmi hello-world  
+> docker run --rm hello-world  
+> docker rmi hello-world  
 
-sudo systemctl enable docker  
+> sudo systemctl enable docker  
 
 ・kubectl v1.18.3 インストール
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.3/bin/linux/amd64/kubectl -k  
-chmod +x ./kubectl  
-mv -f ./kubectl /usr/local/bin  
+> curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.3/bin/linux/amd64/kubectl -k  
+> chmod +x ./kubectl  
+> mv -f ./kubectl /usr/local/bin  
 
-kubectl version --client  
+> kubectl version --client  
 
 ・minikube v1.12.2 のインストール  
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/v1.12.2/minikube-linux-amd64 -k  
-chmod +x minikube  
-install minikube /usr/local/bin/  
-rm ./minikube
+> curl -Lo minikube https://storage.googleapis.com/minikube/releases/v1.12.2/minikube-linux-amd64 -k  
+> chmod +x minikube  
+> install minikube /usr/local/bin/  
+> rm ./minikube
 
 ## 3.2. minikube環境の立ち上げ
 ・立上げ  
-minikube start --vm-driver=none  
+> minikube start --vm-driver=none  
 
 ・状況確認
-minikube status  
+> minikube status  
 以下、host、kubelet、apiserverが Running　になっていればOK  
 > type: Control Plane  
 > host: Running  
@@ -59,7 +59,50 @@ minikube status
 
 ## 3.3. k8s　サンプル構成の立ち上げ
 YAMLファイルを読み込み、Podを立ち上げる  
-kubectl apply -f k8s/sample.yml  
+> kubectl apply -f k8s/sample.yml  
 
 起動したPODおよび外部接続可能なIPアドレスが付与されたかを確認する  
-kubectl get ingress,svc,pod 
+> kubectl get ingress,svc,pod 
+
+## 3.4 Pod障害時の自動復旧
+Pod一覧を表示  
+> kubectl get pod  
+
+Podを強制終了  
+> pods=  
+> kubectl delete pods {$pods} --grace-period=0 --force  
+
+再びPod一覧を表示し、自動で復旧していることを確認  
+> kubectl get pod   
+
+## 3.5 スケールアウト/スケールイン
+k8s/sample.yml内のreplicas の数を変更する  
+> replicas: 2  ====> 10  
+
+sample.ymlを再読み込み  
+> kubectl apply -f k8s/sample.yml  
+
+Pod一覧を表示 2->10へ増加している  
+> kubectl get pod  
+
+同様に 10->5に減らしてみる  
+
+## 3.6 ローリングアップデート/ロールバック
+アプリVerを1から2にアップデートしてみる  
+
+ブラウザでアクセスし、背景が緑で、Ver1が表示されることを確認します  
+※ブラウザを複数作成し、5ブラウザ並列で表示させます  
+
+k8s/sample.yml内のimage のタグ名を変更する  
+> image: ino99/myweb-k8s:v1 ==> v2に変更  
+
+sample.ymlを再読み込み  
+> kubectl apply -f k8s/sample.yml  
+
+ブラウザの表示が、順次　緑から　赤に変わっていき  Ver2が表示される  
+
+
+最後に、アプリVerを2から1にロールバックしてみる  
+> kubectl roolout undo deployment/myweb  
+ブラウザの表示が、順次　赤から　緑に変わっていき  Ver1が表示される  
+

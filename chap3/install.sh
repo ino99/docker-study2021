@@ -23,3 +23,6 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/miniku
 chmod +x minikube  
 install minikube /usr/local/bin/  
 
+minikube start --vm-driver=none
+minikube addons enable ingress
+

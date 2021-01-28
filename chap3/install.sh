@@ -1,7 +1,7 @@
 # install docker & kubectl & minikube  for centos7
 
 
-KUBE_VER=1.20.2
+KUBE_VER="v1.20.2"
 sudo yum update -y  
 
 # Install Docker-ce
@@ -13,7 +13,7 @@ sudo systemctl start docker
 sudo systemctl enable docker  
 
 #Install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.${KUBE_VER}/bin/linux/amd64/kubectl -k  
+curl -LO https://storage.googleapis.com/kubernetes-release/release/${KUBE_VER}/bin/linux/amd64/kubectl -k  
 chmod +x ./kubectl  
 mv -f ./kubectl /usr/local/bin  
 

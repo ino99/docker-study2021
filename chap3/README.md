@@ -42,6 +42,7 @@ kubectl version --client
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 -k  
 chmod +x minikube  
 install minikube /usr/local/bin/  
+rm ./minikube
 
 ## 3.2. minikube環境の立ち上げ
 ・立上げ  

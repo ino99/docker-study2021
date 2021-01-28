@@ -1,7 +1,9 @@
 # install docker & kubectl & minikube  for centos7
 
 
-KUBE_VER="v1.20.2"
+KUBE_VER="v1.18.3"
+MINI_VER="v1.12.2"
+
 sudo yum update -y  
 
 # Install Docker-ce
@@ -19,10 +21,12 @@ mv -f ./kubectl /usr/local/bin
 
 
 #Install minikube
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 -k  
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/${MINI_VER}/minikube-linux-amd64 -k  
 chmod +x minikube  
 install minikube /usr/local/bin/  
 
 minikube start --vm-driver=none
 minikube addons enable ingress
+
+minikube status
 

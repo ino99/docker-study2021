@@ -31,15 +31,15 @@ docker rmi hello-world
 
 sudo systemctl enable docker  
 
-・kubectl v1.20.2 インストール (2021/1/28　現在)  
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.20.2/bin/linux/amd64/kubectl -k  
+・kubectl v1.18.3 インストール
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.3/bin/linux/amd64/kubectl -k  
 chmod +x ./kubectl  
 mv -f ./kubectl /usr/local/bin  
 
 kubectl version --client  
 
-・minikubeのインストール  
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 -k  
+・minikube v1.12.2 のインストール  
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/v1.12.2/minikube-linux-amd64 -k  
 chmod +x minikube  
 install minikube /usr/local/bin/  
 rm ./minikube

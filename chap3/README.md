@@ -51,10 +51,16 @@ minikube start --vm-driver=none
 ・状況確認
 minikube status  
 以下、host、kubelet、apiserverが Running　になっていればOK  
-> type: Control Plane
-> host: Running
-> kubelet: Running
-> apiserver: Running
-> kubeconfig: Configured
-> timeToStop: Nonexistent
+> type: Control Plane  
+> host: Running  
+> kubelet: Running  
+> apiserver: Running  
+> kubeconfig: Configured  
+> timeToStop: Nonexistent  
 
+## 3.3. k8s　サンプル構成の立ち上げ
+YAMLファイルを読み込み、Podを立ち上げる  
+kubectl apply -f k8s/sample.yml  
+
+起動したPODおよび外部接続可能なIPアドレスが付与されたかを確認する  
+kubectl get ingress,svc,pod 

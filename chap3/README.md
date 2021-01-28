@@ -4,7 +4,7 @@
 目次  
 1. 入門編　とりあえずdockerコンテナを動かす
 2. 応用編　コンテナ技術の裏側を少し深堀りする
-3. k8sの動きを見てみる
+3. k8sの動きを見てみる(本チャプター)
 
 # 3. k8s編
 ## 3.1. minikube環境を準備
@@ -13,8 +13,8 @@
 スペック:CPU:2、Mem:2G, HDD:8G on VirtalBox  
 
 
-＃一括インストール  
-# sh ./install.sh  
+＃ 一括インストール  
+sh ./install.sh  
 
 ・dockerインストール  
 sudo yum update -y  
@@ -56,7 +56,6 @@ minikube status
 > kubelet: Running  
 > apiserver: Running  
 > kubeconfig: Configured  
-> timeToStop: Nonexistent  
 
 ## 3.3. k8s　サンプル構成の立ち上げ
 YAMLファイルを読み込み、Podを立ち上げる  

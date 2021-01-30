@@ -37,7 +37,8 @@
 > curl -Lo minikube https://storage.googleapis.com/minikube/releases/v1.12.2/minikube-linux-amd64 -k  
 > chmod +x minikube  
 > install minikube /usr/local/bin/  
-> rm ./minikube
+> rm ./minikube  
+
 　●minikube環境の立ち上げ
 > minikube start --vm-driver=none  
 
@@ -64,7 +65,7 @@
 
 　●Podを強制終了  
 > pods=  
-> kubectl delete pods {$pods} --grace-period=0 --force  
+> kubectl delete pods ${pods} --grace-period=0 --force  
 
 　●再びPod一覧を表示し、自動で復旧していることを確認  
 > kubectl get pod   

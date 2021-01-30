@@ -1,0 +1,13 @@
+unshare -p -f
+
+echo $$
+
+ps aux
+
+
+
+unshare -p -f --mount-proc
+
+echo $$
+
+ps aux

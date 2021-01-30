@@ -1,0 +1,11 @@
+docker run --rm --name cont1 --cpuset-cpus 0 --cpu-shares 1024 -it ubuntu /bin/bash
+
+docker run --rm --name cont2 --cpuset-cpus 0 --cpu-shares 1536 -it ubuntu /bin/bash
+
+docker run --rm --name cont3 --cpuset-cpus 0 --cpu-shares 2560 -it ubuntu /bin/bash
+
+
+ls -l /sys/fs/cgroup/cpu/docker
+
+DID=
+cat /sys/fs/cgroup/cpu/docker/${DID}/cpu.shares

@@ -1,0 +1,19 @@
+####=====
+docker run --rm -it ubuntu /bin/bash
+
+yes > /dev/null 2>&1
+
+
+####=====
+docker run --rm --cpuset-cpus 0 --cpu-quota 10000 --cpu-period 50000 -it ubuntu /bin/bash
+
+docker ps
+
+ls -l /sys/fs/cgroup/cpu/docker/ 
+
+
+DID=
+
+cat /sys/fs/cgroup/cpu/docker/${DID}/cpu.cfs_quota_us
+
+cat /sys/fs/cgroup/cpu/docker/${DID}/cpu.cfs_period_us

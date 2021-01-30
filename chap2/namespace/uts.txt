@@ -1,0 +1,6 @@
+ls -l /proc/$$/ns
+
+unshare -u
+
+hostname hoge
+ping -c 3 hoge

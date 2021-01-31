@@ -1,7 +1,8 @@
 useradd userYY
 
 
-MYROOT=/home/userYY
+MYROOT=/home/userYY/myroot
+mkdir -p $MYROOT
 touch $MYROOT/myfile
 
 cat <<EOF >$MYROOT/x.c

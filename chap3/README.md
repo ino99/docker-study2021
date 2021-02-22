@@ -101,6 +101,6 @@
 　②ブラウザ表示が、緑→赤、V1→2へ切替わるのを確認  
 
 　③ロールバックを実行  
-> kubectl roolout undo deployment/myweb  
+> kubectl rollout undo deployment/myweb  
 
 　④ブラウザ表示が、赤→緑、V2→1へ切替わるのを確認  
